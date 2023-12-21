@@ -91,6 +91,7 @@ async function run() {
 
     if (!holders.has(owner)) {
       holders.set(owner, 1);
+      continue;
     }
 
     holders.set(owner, holders.get(owner) + 1);
