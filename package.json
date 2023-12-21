@@ -1,0 +1,20 @@
+{
+  "name": "snapshot",
+  "version": "1.0.0",
+  "description": "create a snapshot of the Quekz holders",
+  "main": "snapshot.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuekzDev/snapshot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuekzDev/snapshot/issues"
+  },
+  "homepage": "https://github.com/QuekzDev/snapshot#readme"
+}

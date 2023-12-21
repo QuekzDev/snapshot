@@ -1,0 +1,35 @@
+name: Create a holder snapshot
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  fetch-and-store-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Snapshot Holders
+        run: |
+          node snapshot.js
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          ONCHAIN_COLLECTION: BuAYoZPVwQw4AfeEpHTx6iGPbQtB27W7tJUjgyLzgiko
+          IGNORED_ADDRESSES: "4zdNGgAtFsW1cQgHqkiWyRsxaAgxrSRRynnuunxzjxue,1BWutmTvYPwDtmw9abTkS4Ssr8no61spGAvW1X6NDix"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Snapshot $(date +'%Y-%m-%d')"
+          git push
