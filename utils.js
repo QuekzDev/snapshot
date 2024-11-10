@@ -1,12 +1,14 @@
 import { randomUUIDv7 } from "bun";
 
+const HELIUS_API_URL = "https://mainnet.helius-rpc.com";
+
 export async function getAssetsByGroup(
   apiKey,
   collection,
   page = 1,
   limit = 1000
 ) {
-  const url = `https://mainnet.helius-rpc.com/?api-key=${apiKey}`;
+  const url = `${HELIUS_API_URL}?api-key=${apiKey}`;
 
   const payload = {
     jsonrpc: "2.0",
@@ -44,7 +46,7 @@ export async function getAssetsByAuthority(
   page = 1,
   limit = 1000
 ) {
-  const url = `https://mainnet.helius-rpc.com/?api-key=${apiKey}`;
+  const url = `${HELIUS_API_URL}?api-key=${apiKey}`;
 
   const payload = {
     jsonrpc: "2.0",
