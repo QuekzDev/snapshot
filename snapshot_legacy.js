@@ -4,20 +4,16 @@ function randomID() {
   return Math.random().toString(36).substring(2, 15);
 }
 
-async function getAssetsByAuthority(
-  apiKey,
-  authorityAddress,
-  page = 1,
-  limit = 1000
-) {
+async function getAssetsByGroup(apiKey, collection, page = 1, limit = 1000) {
   const url = `https://mainnet.helius-rpc.com/?api-key=${apiKey}`;
 
   const payload = {
     jsonrpc: "2.0",
     id: randomID(),
-    method: "getAssetsByAuthority",
+    method: "getAssetsByGroup",
     params: {
-      authorityAddress: authorityAddress,
+      groupKey: "collection",
+      groupValue: collection,
       page,
       limit,
     },
@@ -43,10 +39,10 @@ async function getAssetsByAuthority(
 
 async function run() {
   const HELIUS_API_KEY = process.env.API_KEY;
-  const AUTHORITY_ADDRESS = process.env.AUTHORITY_ADDRESS;
+  const ONCHAIN_COLLECTION = process.env.ONCHAIN_COLLECTION;
   const IGNORED_ADDRESSES = process.env.IGNORED_ADDRESSES?.split(",") || [];
 
-  const hasAllRequiredEnvVars = [HELIUS_API_KEY, AUTHORITY_ADDRESS].every(
+  const hasAllRequiredEnvVars = [HELIUS_API_KEY, ONCHAIN_COLLECTION].every(
     (variable) => variable !== "" && variable != undefined
   );
 
@@ -61,9 +57,9 @@ async function run() {
   let limit = 1000;
 
   while (true) {
-    const response = await getAssetsByAuthority(
+    const response = await getAssetsByGroup(
       HELIUS_API_KEY,
-      AUTHORITY_ADDRESS,
+      ONCHAIN_COLLECTION,
       page,
       limit
     );
@@ -108,7 +104,7 @@ async function run() {
 
   const csv = csvHeader + csvRows.join("\n");
 
-  await fs.writeFile("snapshot.csv", csv, { encoding: "utf-8" });
+  await fs.writeFile("snapshot_legacy.csv", csv, { encoding: "utf-8" });
 
   console.log("Snapshot generated.");
 }
