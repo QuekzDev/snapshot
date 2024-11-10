@@ -1,43 +1,4 @@
-function randomID() {
-  return Math.random().toString(36).substring(2, 15);
-}
-
-async function getAssetsByAuthority(
-  apiKey,
-  authorityAddress,
-  page = 1,
-  limit = 1000
-) {
-  const url = `https://mainnet.helius-rpc.com/?api-key=${apiKey}`;
-
-  const payload = {
-    jsonrpc: "2.0",
-    id: randomID(),
-    method: "getAssetsByAuthority",
-    params: {
-      authorityAddress: authorityAddress,
-      page,
-      limit,
-    },
-  };
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch assets from helius. Status: ${response.status}`
-    );
-  }
-
-  const json = await response.json();
-  return json;
-}
+import { getAssetsByAuthority } from "./utils.js";
 
 async function run() {
   const HELIUS_API_KEY = process.env.API_KEY;
