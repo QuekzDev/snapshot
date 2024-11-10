@@ -2,7 +2,7 @@ name: Create a legacy holder snapshot
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "05 0 * * *"
   workflow_dispatch:
 
 jobs:
