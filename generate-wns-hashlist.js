@@ -53,7 +53,7 @@ async function run() {
     );
   }
 
-  const assets = [];
+  const hashlist = [];
   let page = 1;
   let limit = 1000;
 
@@ -71,7 +71,8 @@ async function run() {
       throw new Error("Failed to fetch assets from helius.");
     }
 
-    assets.push(...items);
+    const hashes = items.map((item) => item.id);
+    hashlist.push(...hashes);
 
     if (response.result.total < limit) {
       break;
@@ -80,14 +81,12 @@ async function run() {
     page++;
   }
 
-  const hashes = assets.map((asset) => asset.id);
-
   const outputPath = "./hashlist.json";
 
-  await Bun.write(outputPath, JSON.stringify(hashes), { encoding: "utf-8" });
+  await Bun.write(outputPath, JSON.stringify(hashlist), { encoding: "utf-8" });
 
   console.log(
-    `Hashes generated. Saved to ${outputPath} | Found ${assets.length} mints`
+    `Hashes generated. Saved to ${outputPath} | Found ${hashlist.length} hashes`
   );
 }
 
