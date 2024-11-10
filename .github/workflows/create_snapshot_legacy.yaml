@@ -32,5 +32,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Snapshot $(date +'%Y-%m-%d')"
+          git commit -m "Snapshot Legacy $(date +'%Y-%m-%d')"
           git push
