@@ -2,6 +2,7 @@
 
 [![Create a holder snapshot](https://github.com/QuekzDev/snapshot/actions/workflows/create_snapshot.yaml/badge.svg)](https://github.com/QuekzDev/snapshot/actions/workflows/create_snapshot.yaml)
 [![Create a legacy holder snapshot](https://github.com/QuekzDev/snapshot/actions/workflows/create_snapshot_legacy.yaml/badge.svg)](https://github.com/QuekzDev/snapshot/actions/workflows/create_snapshot_legacy.yaml)
+[![WNS Hashlist Update](https://github.com/QuekzDev/snapshot/actions/workflows/update_wns_hashlist.yaml/badge.svg)](https://github.com/QuekzDev/snapshot/actions/workflows/update_wns_hashlist.yaml)
 
 ## About
 
