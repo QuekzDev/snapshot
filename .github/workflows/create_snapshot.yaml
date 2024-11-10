@@ -22,7 +22,7 @@ jobs:
 
       - name: Snapshot WNS Holders
         run: |
-          bun snapshot.js
+          bun run snapshot.js
         env:
           API_KEY: ${{ secrets.API_KEY }}
           AUTHORITY_ADDRESS: 2hwTMM3uWRvNny8YxSEKQkHZ8NHB5BRv7f35ccMWg1ay

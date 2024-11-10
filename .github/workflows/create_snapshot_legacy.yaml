@@ -22,7 +22,7 @@ jobs:
 
       - name: Snapshot Legacy Holders
         run: |
-          bun snapshot_legacy.js
+          bun run snapshot_legacy.js
         env:
           API_KEY: ${{ secrets.API_KEY }}
           ONCHAIN_COLLECTION: BuAYoZPVwQw4AfeEpHTx6iGPbQtB27W7tJUjgyLzgiko
