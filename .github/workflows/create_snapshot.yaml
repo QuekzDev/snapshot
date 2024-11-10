@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-and-store-data:
+  quekz-snapshot:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,15 +14,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: oven-sh/setup-bun@v2
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
         with:
           bun-version: "1.1.34"
 
       - name: Snapshot WNS Holders
-        run: |
-          bun run snapshot.js
+        run: bun run snapshot.js
         env:
           API_KEY: ${{ secrets.API_KEY }}
           AUTHORITY_ADDRESS: 2hwTMM3uWRvNny8YxSEKQkHZ8NHB5BRv7f35ccMWg1ay
