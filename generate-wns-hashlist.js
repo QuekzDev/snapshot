@@ -44,7 +44,7 @@ async function run() {
 
   const outputPath = "./hashlist.json";
 
-  await Bun.write(outputPath, JSON.stringify(hashlist.sort()), { encoding: "utf-8" });
+  await Bun.write(outputPath, JSON.stringify(hashlist.sort(), null, 2), { encoding: "utf-8" });
 
   console.log(
     `Hashes generated. Saved to ${outputPath} | Found ${hashlist.length} hashes`
