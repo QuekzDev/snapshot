@@ -3,6 +3,7 @@ import { getAssetsByAuthority } from "./utils.js";
 async function run() {
   const HELIUS_API_KEY = process.env.API_KEY;
   const AUTHORITY_ADDRESS = process.env.AUTHORITY_ADDRESS;
+  const OUTPUT_PATH = process.env.OUTPUT_PATH || "./hashlist.json";
 
   const hasAllRequiredEnvVars = [HELIUS_API_KEY, AUTHORITY_ADDRESS].every(
     (variable) => variable !== "" && variable != undefined
@@ -42,12 +43,10 @@ async function run() {
     page++;
   }
 
-  const outputPath = "./hashlist.json";
-
-  await Bun.write(outputPath, JSON.stringify(hashlist), { encoding: "utf-8" });
+  await Bun.write(OUTPUT_PATH, JSON.stringify(hashlist), { encoding: "utf-8" });
 
   console.log(
-    `Hashes generated. Saved to ${outputPath} | Found ${hashlist.length} hashes`
+    `Hashes generated. Saved to ${OUTPUT_PATH} | Found ${hashlist.length} hashes`
   );
 }
 
