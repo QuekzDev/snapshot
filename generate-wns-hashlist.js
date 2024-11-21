@@ -43,7 +43,9 @@ async function run() {
     page++;
   }
 
-  await Bun.write(OUTPUT_PATH, JSON.stringify(hashlist), { encoding: "utf-8" });
+  await Bun.write(OUTPUT_PATH, JSON.stringify(hashlist.sort(), null, 2), {
+    encoding: "utf-8",
+  });
 
   console.log(
     `Hashes generated. Saved to ${OUTPUT_PATH} | Found ${hashlist.length} hashes`
